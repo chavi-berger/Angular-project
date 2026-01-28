@@ -1,0 +1,31 @@
+<div class="projects-container">
+  <div class="header">
+    <a routerLink="/teams"> חזרה לצוותים</a>
+    <h2>פרויקטים בצוות</h2>
+  </div>
+
+  <div class="create-project-box">
+    <input 
+      [formControl]="projectNameControl" 
+      placeholder="שם פרויקט חדש..." 
+    />
+    <button (click)="createProject()" [disabled]="projectNameControl.invalid">
+      + צור פרויקט
+    </button>
+  </div>
+
+  <hr />
+
+  <div class="projects-list">
+    @for (project of teamProjects(); track project.id) {
+      <div class="project-card">
+        <h3>{{ project.name }}</h3>
+        <p>{{ project.description || 'אין תיאור' }}</p>
+        
+        <button class="view-tasks-btn" [routerLink]="['/project',project.id,'tasks']">צפה במשימות</button>
+      </div>
+    } @empty {
+      <p>אין פרויקטים בצוות זה.</p>
+    }
+  </div>
+</div>

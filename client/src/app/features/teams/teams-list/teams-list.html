@@ -1,0 +1,27 @@
+<div class="teams-container">
+  <h2>הצוותים שלי</h2>
+
+  <div class="create-team-box">
+    <input 
+      type="text" 
+      [formControl]="teamNameControl" 
+      placeholder="שם צוות חדש..." 
+    />
+    <button (click)="createTeam()" [disabled]="teamNameControl.invalid">
+      + צור צוות
+    </button>
+  </div>
+
+  <hr />
+
+  <div class="teams-grid">
+    @for (team of teamsSignal(); track team.id) {
+      <div class="team-card" [routerLink]="['/teams', team.id, 'projects']">
+        <h3>{{ team.name }}</h3>
+        <span class="member-count">חברים: {{ team.members_count }}</span>
+      </div>
+    } @empty {
+      <p>אין לך צוותים עדיין. צור את הראשון!</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="task-board-container"></div>
+  <div class="board-header">
+    <h1>לוח משימות</h1>
+    <button 
+      class="btn-add-task" 
+      (click)="onAddTask()"
+      [disabled]="isLoading()">
+      + משימה חדשה
+    </button>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>טוען משימות...</p>
+    </div>
+  }
+
+  @else if (error()) {
+    <div class="error-state">
+      <p class="error-message">{{ error() }}</p>
+      <button (click)="loadTasks()" class="btn-retry">נסה שוב</button>
+    </div>
+  }
+
+  @else {
+    <div class="board-columns">
+      <div cdkDropListGroup class="columns-wrapper">
+
+        @for (column of columns(); track column.status) {
+          <div class="column">
+
+            <div class="column-header">
+              <h2>{{ column.title }}</h2>
+              <span class="task-count">{{ column.tasks.length }}</span>
+            </div>
+            <div 
+              class="task-list"
+              cdkDropList
+              [cdkDropListData]="column.tasks"
+              (cdkDropListDropped)="onTaskDrop($event)">
+ 
+              @for (task of column.tasks; track $index) {
+
+                <div cdkDrag class="task-item">
+                  <app-task-card
+                    [task]="task"
+                    (delete)="onDeleteTask(task._id)"
+                    (edit)="onEditTask(task)">
+                  </app-task-card>
+                </div>
+              } @empty {
+                <div class="empty-column">
+                  <p>אין משימות</p>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
