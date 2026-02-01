@@ -1,0 +1,161 @@
+/* הגדרות בסיס לכרטיס המשימה */
+:host {
+  display: block;
+  direction: rtl;
+  margin-bottom: 15px;
+}
+
+.task-card {
+  background: #ffffff;
+  border-radius: 15px; /* פינות מעוגלות כמו בדיאלוג */
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-right: 6px solid #e2e8f0; /* פס עדיפות */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  border-right-width: 10px;
+}
+
+/* צבעי עדיפות לפי הקו של האתר */
+.task-card.priority-high {
+  border-right-color: #ef4444; /* אדום דחוף */
+}
+
+.task-card.priority-normal {
+  border-right-color: #2d9d8e; /* Teal המזוהה עם האתר */
+}
+
+.task-card.priority-low {
+  border-right-color: #94a3b8; /* אפור מקצועי */
+}
+
+/* כותרת המשימה - Charcoal */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.task-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a202c; /* אפור כהה מאוד */
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Badge עדיפות קטן ונקי */
+.priority-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.priority-high .priority-badge { background: #fee2e2; color: #b91c1c; }
+.priority-normal .priority-badge { background: #e0f2f1; color: #115e59; }
+.priority-low .priority-badge { background: #f1f5f9; color: #475569; }
+
+/* תיאור המשימה */
+.task-description {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* פוטר הכרטיס */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* תאריך יעד */
+.due-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.due-date svg {
+  color: #2d9d8e; /* אייקון ב-Teal */
+}
+
+.overdue-text {
+  color: #ef4444 !important;
+}
+
+/* כפתורי פעולה מהירים */
+.task-actions {
+  display: flex;
+  gap: 2px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-actions .btn-edit {
+  color: #4299e1;
+}
+
+.task-actions .btn-edit:hover {
+  background-color: #bee3f8;
+}
+
+.task-actions .btn-delete {
+  color: #e53e3e;
+}
+
+.task-actions .btn-delete:hover {
+  background-color: #fed7d7;
+}
+
+.task-actions .btn-comments {
+  color: #3ee5a5;
+}
+
+.task-actions .btn-comments:hover {
+  background-color: #e1fcf2;
+  transform: scale(1.1);
+}
+
+
+
+.btn-icon:hover {
+  background: #f8fafc;
+  transform: scale(1.15);
+}
+
+/* התראה למשימה שעבר זמנה */
+.task-card.overdue {
+  background: #fffafa;
+}

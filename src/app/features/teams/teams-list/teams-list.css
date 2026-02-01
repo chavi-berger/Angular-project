@@ -1,0 +1,211 @@
+/* קונטיינר ראשי - שינוי רקע לבהיר מאוד */
+.teams-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 50px 30px;
+  direction: rtl;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* כותרת ושורת יצירת צוות */
+.teams-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.teams-header h1 {
+  color: #1a202c; /* Charcoal כהה */
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* טופס הוספת צוות - נקי ומודרני */
+.add-team-form {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.add-team-form input {
+  padding: 12px 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  width: 280px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.add-team-form input:focus {
+  border-color: #2d9d8e;
+  box-shadow: 0 0 0 3px rgba(45, 157, 142, 0.1);
+}
+
+.btn-create {
+  background-color: #2d9d8e; /* Teal */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-create:hover:not(:disabled) {
+  background-color: #248277;
+  transform: translateY(-1px);
+}
+
+/* גריד של כרטיסים */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 35px;
+}
+
+/* עיצוב כרטיס צוות בסגנון התמונה */
+.team-card {
+  background: white;
+  border-radius: 16px;
+  border: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* הפס הצבעוני למעלה מהתמונה */
+.team-card::before {
+  content: '';
+  height: 8px;
+  width: 100%;
+  background-color: #2d9d8e;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+}
+
+.team-content {
+  padding: 30px;
+  cursor: pointer;
+}
+
+.team-name {
+  margin: 0 0 15px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.team-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #64748b;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+/* כפתורי פעולה - סגנון נקי כמו בתמונה */
+.team-actions {
+  display: flex;
+  padding: 20px 30px;
+  gap: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btn-action {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-manage {
+  flex: 2;
+  background-color: #2d9d8e;
+  color: white;
+  border: none;
+}
+
+.btn-manage:hover {
+  background-color: #248277;
+}
+
+.btn-delete {
+  flex: 1;
+  background-color: white;
+  color: #ef4444;
+  border: 1px solid #fee2e2;
+}
+
+.btn-delete:hover {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+
+/* --- דיאלוג אישור מחיקה --- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.6); /* כהה יותר, הייטקי */
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(6px);
+}
+
+.confirm-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  border-top: 10px solid #ef4444;
+}
+
+.btn-confirm-delete {
+  background-color: #ef4444;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 700;
+  border: none;
+}

@@ -1,0 +1,90 @@
+<div class="task-board-container">
+<div class="board-header">
+  <h1>לוח משימות</h1>
+  <button class="btn-add-task" (click)="onAddTask()" [disabled]="isLoading()">
+    + משימה חדשה
+  </button>
+</div>
+
+@if (isLoading()) {
+<div class="loading-state">
+  <div class="spinner"></div>
+  <p>טוען משימות...</p>
+</div>
+}
+
+@else if (error()) {
+<div class="error-state">
+  <p class="error-message">{{ error() }}</p>
+  <button (click)="loadTasks()" class="btn-retry">נסה שוב</button>
+</div>
+}
+
+@else {
+<div class="board-columns">
+  <div cdkDropListGroup class="columns-wrapper">
+
+    @for (column of columns(); track column.status) {
+    <div class="column">
+
+      <div class="column-header">
+        <h2>{{ column.title }}</h2>
+        <span class="task-count">{{ column.tasks.length }}</span>
+      </div>
+      <div class="task-list" cdkDropList [id]="column.status" [cdkDropListData]="column.tasks"
+        (cdkDropListDropped)="onTaskDrop($event)">
+
+        @for (task of column.tasks; track $index) {
+
+        <div cdkDrag class="task-item">
+          <app-task-card [task]="task" (delete)="onDeleteTask(task.id)" (edit)="onEditTask(task)"
+            (comments)="onViewComments(task)">
+          </app-task-card>
+        </div>
+        } @empty {
+        <div class="empty-column">
+          <p>אין משימות</p>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}
+@if (showDialog()) {
+<app-task-dialog [task]="editingTask()" [projectId]="projectId()!" (save)="onSaveTask($event)"
+  (cancel)="onCancelDialog()">
+</app-task-dialog>
+}
+
+@if (showCommentsDialog() && selectedTaskForComments()) {
+    <app-comments-dialog
+      [task]="selectedTaskForComments()!"
+      (close)="onCloseCommentsDialog()">
+    </app-comments-dialog>
+  }
+
+  @if (showDeleteConfirm()) {
+<div class="modal-overlay" (click)="onCancelDeleteTask()">
+  <div class="modal-card delete-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header delete-header">
+      <span class="material-symbols-outlined">delete_forever</span>
+      <h3>מחיקת משימה</h3>
+    </div>
+    
+    <div class="modal-body confirm-padding">
+      <p class="confirm-text">
+        האם את בטוחה שברצונך למחוק את המשימה הזו?
+        <span class="warning-subtext">פעולה זו היא סופית ולא ניתן לבטלה.</span>
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel-outline" (click)="onCancelDeleteTask()">ביטול</button>
+      <button class="btn-confirm-delete" (click)="onConfirmDeleteTask()">מחק משימה</button>
+    </div>
+  </div>
+</div>
+}
+</div>

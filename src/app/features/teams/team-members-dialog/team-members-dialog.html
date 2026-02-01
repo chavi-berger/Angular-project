@@ -1,0 +1,81 @@
+<div class="dialog-overlay" (click)="onOverlayClick($event)">
+  <div class="dialog-content" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <div class="header-title">
+        <span class="material-symbols-outlined">group_manage</span>
+        <h2>ניהול צוות: {{ teamName() }}</h2>
+      </div>
+      <button class="btn-close-x" (click)="onClose()" type="button">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="dialog-body">
+      <div class="add-member-section">
+        <h3>הוספת חבר חדש</h3>
+        <div class="add-member-form">
+          <div class="select-wrapper">
+            <span class="material-symbols-outlined select-icon">person_add</span>
+            <select [formControl]="selectedUserControl" class="user-select">
+              <option value="" disabled selected>בחר משתמש להוספה...</option>
+              @for (user of availableUsers(); track user.id) {
+                <option [value]="user.id">{{ user.name || user.email }}</option>
+              }
+            </select>
+          </div>
+
+          <button class="btn-add" (click)="onAddMember()" [disabled]="selectedUserControl.invalid || isAdding()">
+            @if (isAdding()) {
+              <span class="spinner-small"></span>
+            } @else {
+              <span class="material-symbols-outlined">add</span>
+              <span>הוסף</span>
+            }
+          </button>
+        </div>
+      </div>
+
+      <div class="members-section">
+        <h3>חברי הצוות ({{ members().length }})</h3>
+
+        @if (isLoadingMembers()) {
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>טוען רשימה...</p>
+          </div>
+        } @else {
+          <div class="members-list">
+            @for (member of members(); track member.id) {
+              <div class="member-item">
+                <div class="member-info">
+                  <div class="member-avatar" [style.background-color]="member.role === 'owner' ? '#1a202c' : '#2d9d8e'">
+                    {{ (member.name || 'U').substring(0,1).toUpperCase() }}
+                  </div>
+                  <div class="member-details">
+                    <span class="member-name">{{ member.name || 'משתמש' }}</span>
+                    <span class="member-email">{{ $any(member.user)?.email || member.user_email }}</span>
+                  </div>
+                </div>
+
+                <div class="member-actions">
+                  @if (member.role === 'owner') {
+                    <span class="owner-tag">מנהל</span>
+                  } @else {
+                    <button class="btn-remove-simple" (click)="onRemoveMember(member.id, member.name || 'משתמש')">
+                      <span class="material-symbols-outlined">person_remove</span>
+                    </button>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <button class="btn-finish" (click)="onClose()">סיום</button>
+    </div>
+  </div>
+</div>

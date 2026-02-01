@@ -1,0 +1,294 @@
+.projects-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  direction: rtl;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Header & Back Button */
+.projects-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 25px;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #2d9d8e;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.title-section h2 {
+  margin: 0;
+  color: #1a202c;
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+/* Form Create */
+.create-project-form {
+  display: flex;
+  gap: 12px;
+}
+
+.create-project-form input {
+  padding: 12px 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  width: 250px;
+  font-family: inherit;
+}
+
+.btn-create-p {
+  background-color: #2d9d8e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.btn-create-p:hover { background-color: #248277; }
+
+/* Grid & Cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border-right: 6px solid #2d9d8e;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(45, 157, 142, 0.1);
+}
+
+.project-main-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.project-icon-wrapper {
+  background: #f0fdfa;
+  color: #2d9d8e;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-text h3 {
+  margin: 0 0 5px 0;
+  color: #1a202c;
+  font-size: 1.25rem;
+}
+
+.project-text p {
+  margin: 0;
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+/* Actions */
+.project-card-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.project-card:hover .project-card-actions { opacity: 1; }
+
+.p-action-btn {
+  background: #f8fafc;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: 0.2s;
+}
+
+.p-action-btn.edit:hover { color: #2d9d8e; background: #f0fdfa; }
+.p-action-btn.delete:hover { color: #ef4444; background: #fef2f2; }
+
+/* Modal Edit */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+
+.modal-header {
+  background: #1a202c;
+  color: white;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-body { padding: 30px; }
+
+.input-group { margin-bottom: 20px; }
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #4a5568;
+}
+
+.input-group input, .input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-family: inherit;
+}
+
+.modal-footer {
+  padding: 20px 30px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-save {
+  background: #2d9d8e;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #f72626;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.confirm-card.delete-warning {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-icon {
+  background-color: #fef2f2;
+  color: #ef4444;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.confirm-icon .material-symbols-outlined {
+  font-size: 40px;
+}
+
+.confirm-card h3 {
+  color: #1a202c;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.confirm-card p {
+  color: #718096;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-secondary {
+  flex: 1;
+  padding: 12px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-danger-confirm {
+  flex: 1;
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-danger-confirm:hover {
+  background: #dc2626;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}

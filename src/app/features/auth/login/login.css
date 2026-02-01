@@ -1,0 +1,122 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  /* שינוי לרקע אפור-כחלחל עדין שמתאים ל-Sidebar הכהה */
+  background-color: #f0f4f8; 
+  padding-top: 80px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.login-container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  /* צל עמוק ורך יותר שנותן תחושת עומק */
+  box-shadow: 0 15px 35px rgba(45, 157, 142, 0.1);
+  direction: rtl;
+}
+
+h2 {
+  text-align: center;
+  /* צבע כמעט שחור הייטקי */
+  color: #1a202c;
+  margin-bottom: 35px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+input {
+  padding: 14px 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #ffffff;
+  color: #2d3748;
+}
+
+input:focus {
+  outline: none;
+  /* הירוק-ים המקצועי מה-Header החדש */
+  border-color: #2d9d8e; 
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(45, 157, 142, 0.1);
+}
+
+.error {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  /* הכפתור הופך ל-Teal כמו בתמונה */
+  background-color: #2d9d8e; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(45, 157, 142, 0.2);
+}
+
+button:hover:not(:disabled) {
+  background-color: #248277;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(45, 157, 142, 0.25);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+p {
+  text-align: center;
+  margin-top: 30px;
+  color: #718096;
+  font-size: 15px;
+}
+
+a {
+  /* קישורים בצבע ה-Teal */
+  color: #2d9d8e; 
+  text-decoration: none;
+  font-weight: 800;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #1a6b61;
+  text-decoration: underline;
+}

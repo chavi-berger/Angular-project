@@ -1,0 +1,30 @@
+<header class="app-header">
+  <div class="header-container">
+    <div class="header-brand">
+      <a routerLink="/teams" class="brand-link">
+        <span class="material-symbols-outlined brand-icon">task_alt</span>
+        <span class="brand-name">Tasks Manager</span>
+      </a>
+    </div>
+
+    @if (isLoggingIn()) {
+      <nav class="header-nav">
+        <a routerLink="/teams" routerLinkActive="active" class="nav-link">
+          הצוותים שלי
+        </a>
+      </nav>
+
+      <div class="header-user">
+        <div class="user-info">
+          <span class="material-symbols-outlined">account_circle</span>
+          <span class="user-name">{{ userName() }}</span>
+        </div>
+
+        <button class="btn-logout" (click)="onLogout()" title="התנתק">
+          <span class="material-symbols-outlined">logout</span>
+          <span class="logout-text">יציאה</span>
+        </button>
+      </div>
+    }
+  </div>
+</header>

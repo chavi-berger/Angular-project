@@ -1,0 +1,28 @@
+<div class="login-container"> <h2>התחברות למערכת</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">אימייל:</label>
+      <input id="email" type="email" formControlName="email" placeholder="example@email.com">
+      
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <div class="error">נא להזין כתובת אימייל תקינה</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">סיסמה:</label>
+      <input id="password" type="password" formControlName="password" placeholder="••••••••">
+      
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <div class="error">הסיסמה חייבת להכיל לפחות 6 תווים</div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">התחבר</button>
+  </form>
+
+  <p>
+    עדיין אין לך משתמש? <a routerLink="/register">הרשם כאן</a>
+  </p>
+</div>

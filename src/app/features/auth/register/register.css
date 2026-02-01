@@ -1,0 +1,117 @@
+/* רקע לכל הדף שמתכתב עם פלטת הצבעים החדשה */
+:host {
+  display: block;
+  min-height: calc(100vh - 80px);
+  background-color: #f0f4f8; /* אפור-כחלחל בהיר מאוד */
+  padding: 40px 20px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* הכרטיס המרכזי - מיושר לפי שפת ה-Teal & Charcoal */
+.register-container {
+  max-width: 480px; /* מעט רחב יותר מהלוגין למתן מרחב לשדות */
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(45, 157, 142, 0.1); /* צל בגוון Teal עדין */
+  direction: rtl;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 35px;
+  color: #1a202c; /* Charcoal כהה ומקצועי */
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* סידור השדות */
+.form-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+input {
+  padding: 14px 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  background-color: #ffffff;
+  color: #2d3748;
+}
+
+input:focus {
+  border-color: #2d9d8e; /* צבע ה-Teal מהתמונה */
+  box-shadow: 0 0 0 4px rgba(45, 157, 142, 0.1);
+  background-color: #fff;
+}
+
+/* הודעות שגיאה רציניות יותר */
+.error {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* כפתור הירשם - עוצמתי כמו ב-Header */
+button {
+  width: 100%;
+  padding: 16px;
+  background-color: #2d9d8e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(45, 157, 142, 0.2);
+}
+
+button:hover:not(:disabled) {
+  background-color: #248277;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(45, 157, 142, 0.25);
+}
+
+button:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* טקסט תחתון */
+p {
+  text-align: center;
+  margin-top: 30px;
+  color: #718096;
+  font-size: 15px;
+}
+
+a {
+  color: #2d9d8e;
+  text-decoration: none;
+  font-weight: 800;
+  margin-right: 5px;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #1a6b61;
+  text-decoration: underline;
+}

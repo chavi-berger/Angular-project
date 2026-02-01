@@ -1,0 +1,106 @@
+/* מניעת התנגשויות ויישור לימין */
+:host {
+  display: block;
+  direction: rtl;
+}
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75); /* רקע כהה עמוק */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  padding: 1rem;
+}
+
+.dialog-content {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 95%;
+  max-width: 650px; /* מעט רחב יותר לשיחות */
+  height: 85vh;
+  max-height: 750px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScaleIn {
+  from { transform: scale(0.95) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Header כהה (Charcoal) - תואם לניהול חברים */
+.dialog-header {
+  padding: 24px 30px;
+  background: #1a202c; /* Charcoal המדויק מהאתר */
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.task-info h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.task-description {
+  margin: 5px 0 0;
+  color: #a0aec0; /* אפור בהיר על רקע כהה */
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.btn-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* גוף הדיאלוג - המקום שבו הרשימה תוצג */
+.dialog-body {
+  flex: 1;
+  background: #f8fafc; /* רקע אפרפר בהיר מאוד לאזור ההודעות */
+  overflow: hidden; /* שה-CommentsList ישלוט על הגלילה */
+  display: flex;
+  flex-direction: column;
+}
+
+/* התאמה לניידים */
+@media (max-width: 600px) {
+  .dialog-content {
+    height: 100vh;
+    max-height: none;
+    width: 100%;
+    border-radius: 0;
+  }
+  
+  .dialog-header {
+    padding: 15px 20px;
+  }
+}

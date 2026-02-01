@@ -1,0 +1,180 @@
+/* :host ו-.comments-container נשארים אותו דבר */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f1f5f9;
+    direction: rtl;
+}
+
+/* כותרת פנימית - סידור ויישור */
+.comments-header {
+    padding: 16px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* יוצר רווח בין הכותרת לכפתור הסגירה אם קיים */
+    gap: 12px;
+    color: #1a202c;
+    flex-shrink: 0; /* מונע מהכותרת להתכווץ */
+}
+
+/* עטיפה לאייקון ולטקסט כדי שיישארו צמודים */
+.header-main-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon { 
+    color: #2d9d8e;
+    display: flex;
+    align-items: center;
+}
+
+.comments-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.comments-count {
+    background: #e0f2f1;
+    color: #2d9d8e;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-right: auto; /* דוחף את המספר שמאלה אם אין אלמנט אחר */
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.comments-list-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.comment-item {
+    display: flex;      
+    width: 100%;
+    margin-bottom: 5px;
+    justify-content: flex-start; 
+}
+
+.comment-item.own-comment {
+    justify-content: flex-end; 
+}
+
+.comment-bubble {
+    max-width: 80%;
+    min-width: 140px;
+    padding: 12px 16px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    /* Float נמחק מכאן */
+}
+
+.comment-item:not(.own-comment) .comment-bubble {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px 18px 0px 18px;
+}
+
+.comment-item.own-comment .comment-bubble {
+    background: #14b8a6;
+    color: white;
+    border: none;
+    border-radius: 18px 18px 18px 0px;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    font-size: 0.75rem;
+}
+
+.user-name { font-weight: 800; color: #475569; }
+.own-comment .user-name { color: #ffffff; }
+
+.comment-date { color: #94a3b8; font-size: 0.7rem; }
+.own-comment .comment-date { color: rgba(255,255,255,0.8); }
+
+.comment-body {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* החלק של הטופס למטה נשאר זהה לקוד המקורי שלך */
+.comment-form {
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+    background: #f8fafc;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 2px solid #e2e8f0;
+    align-items: center;
+}
+
+.input-wrapper:focus-within {
+    border-color: #2d9d8e;
+    background: white;
+}
+
+textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.btn-send {
+    background: #2d9d8e;
+    color: white;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-hint {
+    display: block;
+    margin-top: 5px;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    margin-right: 10px;
+}

@@ -1,0 +1,17 @@
+<div class="dialog-overlay" (click)="onOverlayClick($event)">
+  <div class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+      <div class="task-info">
+        <h2>{{ task().title }}</h2>
+        @if (task().description) {
+          <p class="task-description">{{ task().description }}</p>
+        }
+      </div>
+      <button class="btn-close" (click)="onClose()" type="button">×</button>
+    </div>
+
+    <div class="dialog-body">
+      <app-comments-list [taskId]="task().id"></app-comments-list>
+    </div>
+  </div>
+</div>

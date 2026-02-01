@@ -1,0 +1,244 @@
+.dialog-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.7); /* כהה ושקוף */
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+  direction: rtl;
+}
+
+.dialog-content {
+  background: white;
+  border-radius: 16px;
+  width: 95%;
+  max-width: 550px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Header כהה כמו ה-Sidebar בתמונה */
+.dialog-header {
+  background-color: #1a202c; /* Charcoal כהה */
+  color: white;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.btn-close-x {
+  background: transparent;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-close-x:hover { color: white; }
+
+.dialog-body {
+  padding: 25px;
+  overflow-y: auto;
+}
+
+/* הוספת חבר */
+.add-member-section h3, .members-section h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #718096;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.add-member-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.select-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.select-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.user-select {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  appearance: none;
+  background-color: #f8fafc;
+}
+
+.btn-add {
+  background-color: #2d9d8e; /* Teal */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* רשימת חברים */
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  background: #fdfdfe;
+  transition: 0.2s;
+}
+
+.member-item:hover {
+  background: #f8fafc;
+  border-color: #cbd5e0;
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* עיצוב האווטאר העגול */
+.member-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.member-email {
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+.owner-tag {
+  background: #edf2f7;
+  color: #4a5568;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.btn-remove-simple {
+  background: transparent;
+  border: none;
+  color: #cbd5e0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-remove-simple:hover { color: #ef4444; }
+
+.dialog-footer {
+  padding: 15px 25px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-finish {
+  background-color: #1a202c;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.spinner-small {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* עדכון ה-Select שיירש את הפונט וייראה אחיד */
+.user-select {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  /* ירושת הפונט משאר האתר */
+  font-family: inherit; 
+  appearance: none;
+  background-color: #f8fafc;
+  color: #2d3748;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* גם עבור האופציות שבתוך הסלקט */
+.user-select option {
+  font-family: inherit;
+  background-color: white;
+  color: #2d3748;
+}
+
+.user-select:focus {
+  outline: none;
+  border-color: #2d9d8e;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(45, 157, 142, 0.1);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

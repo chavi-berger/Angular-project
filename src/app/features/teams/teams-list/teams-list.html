@@ -1,0 +1,90 @@
+<div class="teams-container">
+  <div class="teams-header">
+    <h1><span class="material-symbols-outlined">groups</span> הצוותים שלי</h1>
+
+    <div class="add-team-form">
+      <input type="text" [formControl]="teamNameControl" placeholder="שם צוות חדש..." (keydown.enter)="createTeam()">
+      <button class="btn-create" (click)="createTeam()" [disabled]="teamNameControl.invalid">
+        <span class="material-symbols-outlined">add</span>
+        צור צוות
+      </button>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <span class="spinner"></span>
+      <p>טוען צוותים...</p>
+    </div>
+  } @else if (teams().length === 0) {
+    <div class="empty-state">
+      <span class="material-symbols-outlined">group_add</span>
+      <h2>אין לך צוותים עדיין</h2>
+      <p>צור צוות חדש כדי להתחיל לעבוד בשיתוף פעולה!</p>
+    </div>
+  } @else {
+    <div class="teams-grid">
+      @for (team of teams(); track team.id) {
+        <div class="team-card">
+          <div class="team-content" (click)="viewProjects(team.id)">
+            <h3 class="team-name">{{ team.name }}</h3>
+            <div class="team-meta">
+              <div class="meta-item">
+                <span class="material-symbols-outlined">person</span>
+                <span>{{ team.members_count || 0 }} חברים</span>
+              </div>
+              <div class="meta-item">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <span>נוצר: {{ team.created_at | date: 'dd/MM/yy' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-actions">
+            <button class="btn-action btn-manage" (click)="manageMembers(team, $event)">
+              <span class="material-symbols-outlined">person_add</span>
+              ניהול חברים
+            </button>
+            
+            <button class="btn-action btn-delete" (click)="deleteTeam(team.id, team.name, $event)">
+              <span class="material-symbols-outlined">delete</span>
+              מחק
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+@if (showMembersDialog() && selectedTeam()) {
+  <app-team-members-dialog 
+    [teamId]="selectedTeam()!.id" 
+    [teamName]="selectedTeam()!.name" 
+    (close)="closeMembersDialog()">
+  </app-team-members-dialog>
+}
+
+@if (showDeleteConfirm()) {
+<div class="modal-overlay" (click)="onCancelDelete()">
+  <div class="confirm-card" (click)="$event.stopPropagation()">
+    <div class="confirm-header">
+      <span class="material-symbols-outlined warn-icon">warning</span>
+      <h2>מחיקת צוות</h2>
+    </div>
+    
+    <div class="confirm-body">
+      <p>האם אתה בטוח שברצונך למחוק את הצוות <strong>"{{ teamToDelete()?.name }}"</strong>?</p>
+      <div class="danger-notice">
+        <span class="material-symbols-outlined">error</span>
+        <span>כל הפרויקטים והמשימות של הצוות ימחקו לצמיתות!</span>
+      </div>
+    </div>
+
+    <div class="confirm-footer">
+      <button class="btn-cancel" (click)="onCancelDelete()">ביטול</button>
+      <button class="btn-confirm-delete" (click)="onConfirmDelete()">מחק לצמיתות</button>
+    </div>
+  </div>
+</div>
+}

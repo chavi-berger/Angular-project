@@ -1,0 +1,100 @@
+<div class="projects-container">
+  <div class="projects-header-row">
+    <div class="title-section">
+      <a routerLink="/teams" class="back-btn">
+        <span class="material-symbols-outlined">arrow_forward</span>
+        חזרה לצוותים
+      </a>
+      <h2>פרויקטים בצוות</h2>
+    </div>
+
+    <div class="create-project-form">
+      <input [formControl]="projectNameControl" placeholder="שם פרויקט חדש..." (keydown.enter)="createProject()" />
+      <button class="btn-create-p" (click)="createProject()" [disabled]="projectNameControl.invalid">
+        <span class="material-symbols-outlined">add_circle</span>
+        צור פרויקט
+      </button>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+    @for (project of teamProjects(); track project.id) {
+    <div class="project-card">
+      <div class="project-main-link" [routerLink]="['/projects', project.id, 'tasks']">
+        <div class="project-icon-wrapper">
+          <span class="material-symbols-outlined">folder_open</span>
+        </div>
+        <div class="project-text">
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description || 'אין תיאור לפרויקט זה... הגיע הזמן להוסיף אחד!' }}</p>
+        </div>
+      </div>
+
+      <div class="project-card-actions">
+        <button class="p-action-btn edit" (click)="onEditProject(project)" title="עריכה">
+          <span class="material-symbols-outlined">edit_square</span>
+        </button>
+        <button class="p-action-btn delete" (click)="onDeleteProject(project.id)" title="מחיקה">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+      </div>
+    </div>
+    } @empty {
+    <div class="empty-projects">
+      <span class="material-symbols-outlined large-icon">inventory_2</span>
+      <p>עדיין אין פרויקטים בצוות הזה. צור את הפרויקט הראשון שלך למעלה!</p>
+    </div>
+    }
+  </div>
+</div>
+
+@if (showEditDialog()) {
+<div class="modal-overlay" (click)="onCancelEdit()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <span class="material-symbols-outlined">edit_note</span>
+      <h3>עריכת פרויקט</h3>
+    </div>
+    
+    <div class="modal-body">
+      <div class="input-group">
+        <label>שם הפרויקט</label>
+        <input type="text" #nameInput [value]="editingProject()?.name" />
+      </div>
+
+      <div class="input-group">
+        <label>תיאור הפרויקט</label>
+        <textarea #descInput rows="4">{{ editingProject()?.description }}</textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="onCancelEdit()">ביטול</button>
+      <button class="btn-save" (click)="onSaveProject({ 
+          name: nameInput.value, 
+          description: descInput.value 
+        })">
+        שמור שינויים
+      </button>
+    </div>
+  </div>
+</div>
+}
+
+@if (showDeleteConfirm()) {
+<div class="modal-overlay" (click)="onCancelDelete()">
+  <div class="confirm-card delete-warning" (click)="$event.stopPropagation()">
+    <div class="confirm-icon">
+      <span class="material-symbols-outlined">warning</span>
+    </div>
+    
+    <h3>מחיקת פרויקט</h3>
+    <p>האם אתה בטוח שברצונך למחוק את הפרויקט? <br> <strong>כל המשימות והנתונים ימחקו לצמיתות!</strong></p>
+
+    <div class="confirm-actions">
+      <button class="btn-secondary" (click)="onCancelDelete()">ביטול</button>
+      <button class="btn-danger-confirm" (click)="onConfirmDelete()">מחק לצמיתות</button>
+    </div>
+  </div>
+</div>
+}

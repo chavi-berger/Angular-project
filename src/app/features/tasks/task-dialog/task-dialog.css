@@ -1,0 +1,165 @@
+/* מניעת התנגשות ויישור לימין */
+:host {
+  display: block;
+  direction: rtl;
+}
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75); /* רקע כהה עמוק */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+.dialog-content {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Header אפור כהה (Charcoal) - כמו בניהול חברים */
+.dialog-header {
+  padding: 20px 30px;
+  background: #1a202c; /* הצבע הכהה המקצועי */
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.btn-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* גוף הדיאלוג */
+.dialog-body {
+  padding: 30px;
+  background: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+/* שדות קלט נקיים */
+input, textarea, select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  background: #f8fafc;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #2d9d8e; /* Teal */
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(45, 157, 142, 0.1);
+}
+
+/* פוטר */
+.dialog-footer {
+  padding: 20px 30px;
+  background: #f1f5f9; /* רקע אפרפר עדין לפוטר */
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.btn {
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+/* כפתור ביטול - לבן נקי */
+.btn-cancel {
+  background: #ffffff;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+}
+
+.btn-cancel:hover {
+  background: #f8fafc;
+  border-color: #a0aec0;
+}
+
+/* כפתור אישור - Teal */
+.btn-primary {
+  background: #2d9d8e;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #248277;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 157, 142, 0.3);
+}
+
+.btn-primary:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+}

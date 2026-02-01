@@ -1,0 +1,63 @@
+<div class="dialog-overlay" (click)="onOverlayClick($event)">
+<div class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+        <h2>{{ isEditMode() ? 'עריכת משימה' : 'משימה חדשה' }}</h2>
+        <button class="btn-close" (click)="onCancel()" type="button">
+            ×
+        </button>
+    </div>
+
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="dialog-body">
+
+            <div class="form-group">
+                <label for="title">כותרת <span class="required">*</span></label>
+                <input id="title" type="text" formControlName="title" placeholder="הזן כותרת למשימה"
+                    [class.error-input]="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
+
+                @if (taskForm.get('title')?.invalid && taskForm.get('title')?.touched) {
+                <span class="error-message">כותרת היא שדה חובה</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="description">תיאור</label>
+                <textarea id="description" formControlName="description" placeholder="הזן תיאור מפורט למשימה" rows="4">
+          </textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="priority">עדיפות <span class="required">*</span></label>
+                    <select id="priority" formControlName="priority">
+                        <option [value]="TaskPriority.LOW">נמוך</option>
+                        <option [value]="TaskPriority.NORMAL">בינוני</option>
+                        <option [value]="TaskPriority.HIGH">דחוף</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">סטטוס <span class="required">*</span></label>
+                    <select id="status" formControlName="status">
+                        <option [value]="TaskStatus.TODO">מחכה לביצוע</option>
+                        <option [value]="TaskStatus.IN_PROGRESS">בתהליך</option>
+                        <option [value]="TaskStatus.DONE">הושלם</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">תאריך יעד</label>
+                <input id="dueDate" type="date" formControlName="dueDate">
+            </div>
+        </div>
+
+        <div class="dialog-footer">
+            <button type="button" class="btn btn-cancel" (click)="onCancel()">
+                ביטול
+            </button>
+            <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">
+                {{ isEditMode() ? 'שמור שינויים' : 'צור משימה' }}
+            </button>
+        </div>
+    </form>
+</div>
+</div>

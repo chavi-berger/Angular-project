@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-teal: #74f8b1;    /* הירוק-כחול של הכפתורים והכותרת */
+  --dark-sidebar: #2d3748;   /* אפור כהה לתפריט הצד */
+  --light-bg: #f7fafc;       /* רקע בהיר מאוד לדף */
+  --text-main: #1a202c;  
+    direction: rtl;
+}
